@@ -1,13 +1,13 @@
 # Install html2text
 # pip3 install html2text
 
-# Download description HTML pages from 1999 to 2022
-for i in $(seq 1999 2022); do
+# Download description HTML pages from 1999 to 2023
+for i in $(seq 1999 2023); do
     curl http://xzqh.mca.gov.cn/description?dcpid=$i > $i.html;
 done
 
 # Convert HTMLs to txt
-for i in $(seq 1999 2022); do
+for i in $(seq 1999 2023); do
     echo $i;
     cat $i.html | iconv --from-code=gbk --to-code=utf8 | html2text > $i.txt;
 done

@@ -55,9 +55,9 @@ def main(diff_filename):
             pass
 
     # output files
-    code_removals_unaccounted_for = open("./rules-generated/code-removals-unaccounted-for.log", "a")
-    code_changes = open("./rules-generated/code-changes.csv", "a")
-    name_changes = open("./rules-generated/name-changes.csv", "a")
+    code_removals_unaccounted_for = open("../rules-generated/code-removals-unaccounted-for.log", "a")
+    code_changes = open("../rules-generated/code-changes.csv", "a")
+    name_changes = open("../rules-generated/name-changes.csv", "a")
 
     for line in deletion_lines:
         try:

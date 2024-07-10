@@ -44,6 +44,8 @@ def main(diff_filename):
     for line in addition_lines:
         try:
             [code, fullname] = line[2:].split(",")
+            if not code.isdigit():
+                continue
             # if code.endswith("00"):
             # print('skipping: ', [code, fullname], file=sys.stderr)
             # continue
@@ -106,6 +108,8 @@ def main(diff_filename):
     for line in deletion_lines:
         try:
             [code, fullname] = line[2:].split(",")
+            if not code.isdigit():
+                continue
         except ValueError:
             continue
 

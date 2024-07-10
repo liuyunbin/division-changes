@@ -56,7 +56,7 @@ def main(diff_filename):
                 continue
 
             name = extract_name(fullname)
-            if name in additions or fullname == "郊区": # 叫郊区的太多了, 只有一个也可能误判
+            if name in additions or fullname == "郊区" or fullname == "城区": # 城区 郊区太多了, 只有一个也可能误判
                 # 判断是否已手动处理过
                 handle = False
                 if change_year in merges:
@@ -70,7 +70,10 @@ def main(diff_filename):
                             handle = True
                             break
                 if handle == False:
-                    print("duplicate additions: ", [code, fullname], additions[name], file=sys.stderr)
+                    if name in additions:
+                        print("duplicate additions: ", [code, fullname], additions[name], file=sys.stderr)
+                    else:
+                        print("duplicate additions: ", [code, fullname], file=sys.stderr)
             else:
                 additions[name] = [code, fullname]
                 additions[code] = [code, fullname]

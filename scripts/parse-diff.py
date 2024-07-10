@@ -47,9 +47,14 @@ def main(diff_filename):
             # if code.endswith("00"):
             # print('skipping: ', [code, fullname], file=sys.stderr)
             # continue
+
+            change_year = int(year.split("-")[1])
+            if change_year in dumps and code in dumps[change_year]:
+                dumps_changes.append(dumps[change_year][code])
+                continue
+
             name = extract_name(fullname)
             if name in additions or fullname == "郊区": # 叫郊区的太多了, 只有一个也可能误判
-                change_year = int(year.split("-")[1])
                 # 判断是否已手动处理过
                 handle = False
                 if change_year in merges:
@@ -62,9 +67,6 @@ def main(diff_filename):
                         if code in splits[change_year][v]:
                             handle = True
                             break
-                if handle == False and change_year in dumps and code in dumps[change_year]:
-                    handle = True
-                    dumps_changes.append(dumps[change_year][code])
                 if handle == False:
                     print("duplicate additions: ", [code, fullname], additions[name], file=sys.stderr)
             else:
